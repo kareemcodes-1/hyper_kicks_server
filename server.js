@@ -19,7 +19,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"]
+    origin: [process.env.ADMIN_URL, process.env.FRONTEND_URL]
 }));
 
 app.post('/api/stripe/webhook', bodyParser.raw({ type: 'application/json' }), stripeWebhook);
