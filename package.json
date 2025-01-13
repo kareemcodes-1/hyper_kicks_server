@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.1",
+    "nodemon": "^3.1.4",
+    "npm": "^10.8.3",
+    "puppeteer": "^23.4.1",
+    "react-redux": "^9.1.2",
+    "stripe": "^17.5.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.3"
+  }
+}
