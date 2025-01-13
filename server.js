@@ -15,11 +15,14 @@ import { stripeWebhook } from "./controllers/stripeController.js";
 
 configDotenv();
 
+// const client = process.env.VITE_CLIENT;
+const admin = process.env.VITE_ADMIN;
+
 const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: [process.env.ADMIN_URL, process.env.FRONTEND_URL]
+    origin: [admin]
 }));
 
 app.post('/api/stripe/webhook', bodyParser.raw({ type: 'application/json' }), stripeWebhook);
