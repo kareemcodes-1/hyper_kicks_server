@@ -22,7 +22,8 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: [admin]
+    origin: [admin],
+    credentials: true
 }));
 
 app.post('/api/stripe/webhook', bodyParser.raw({ type: 'application/json' }), stripeWebhook);
