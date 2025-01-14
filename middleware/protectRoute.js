@@ -27,7 +27,6 @@ export const protectRoute = expressAsyncHandler(async (req, res, next) => {
   export const adminMiddleware = expressAsyncHandler(async (req, res, next) => {
        let token;
        token = req.cookies?.jwt;
-       console.log(token);
 
        if(!token){
           return res.status(404).json({message: "Token doesn't exist"});
