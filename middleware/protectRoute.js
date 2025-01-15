@@ -26,10 +26,10 @@ export const protectRoute = expressAsyncHandler(async (req, res, next) => {
 
   export const adminMiddleware = expressAsyncHandler(async (req, res, next) => {
        let token;
-       token = req.cookies;
+       token = req.cookies.jwt;
 
        if(!token){
-          return res.status(404).json({message: token});
+          return res.status(404).json({message: req.cookies});
        }
 
        try {
