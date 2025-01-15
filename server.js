@@ -22,7 +22,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: [client],
+    origin: [client, admin],
     credentials: true
 }));
 
