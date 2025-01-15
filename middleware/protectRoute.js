@@ -29,7 +29,7 @@ export const protectRoute = expressAsyncHandler(async (req, res, next) => {
        token = req.cookies?.jwt;
 
        if(!token){
-          return res.status(404).json({message: "Token doesn't exist"});
+          return res.status(404).json({message: token});
        }
 
        try {
