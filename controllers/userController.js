@@ -111,6 +111,7 @@ const updateUserProfile = expressAsyncHandler(async (req, res) => {
           }
       
           const { name, email, avatar } = req.body;
+
           if (name) user.name = name;
           if (email) user.email = email;
           if (avatar) user.avatar = avatar;

@@ -28,7 +28,8 @@ app.use(cors({
 
 app.post('/api/stripe/webhook', bodyParser.raw({ type: 'application/json' }), stripeWebhook);
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use('/api/users', userRoutes);
 app.use('/api/collections', collectionRoutes);
 app.use('/api/products', productRoutes);

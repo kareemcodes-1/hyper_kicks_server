@@ -55,6 +55,35 @@ const getAllOrdersByMonth = expressAsyncHandler(async (req, res) => {
     }
 });
 
+
+const getAllSalesByMonth = expressAsyncHandler(async (req, res) => {
+    try {
+        // Fetch all orders
+        const orders = await Order.find();
+    
+        // Calculate sales per month
+        const salesPerMonth = orders.reduce((acc, order) => {
+          const monthIndex = new Date(order.createdAt).getMonth(); // 0 for January --> 11 for December
+          acc[monthIndex] = (acc[monthIndex] || 0) + order.totalAmount;
+          return acc;
+        }, {});
+    
+        // Create graph data for all 12 months
+        const graphData = Array.from({ length: 12 }, (_, i) => {
+          const month = new Intl.DateTimeFormat("en-US", { month: "short" }).format(
+            new Date(0, i)
+          ); // Convert month index to name (e.g., Jan, Feb)
+          return { name: month, sales: salesPerMonth[i] || 0 }; // Default sales to 0 if no data
+        });
+    
+        // Respond with the graph data
+        res.status(200).json(graphData);
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
+  });
+  
+
 const getUserOrders = expressAsyncHandler(async (req, res) => {
     try {
         const {userId} = req.params;
@@ -69,4 +98,4 @@ const getUserOrders = expressAsyncHandler(async (req, res) => {
     }
 });
 
-export {getAllOrders, getAllOrdersByMonth, getUserOrders};
+export {getAllOrders, getAllSalesByMonth, getUserOrders, getAllOrdersByMonth};
